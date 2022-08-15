@@ -34,3 +34,12 @@ const appData: AppState = {
     },
   ],
 };
+
+type AppStateContextProps = {
+  lists: List[];
+  getTasksByListId(id: string): Task[];
+};
+
+const AppStateContext = createContext<AppStateContextProps>(
+  {} as AppStateContextProps
+);
