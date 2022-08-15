@@ -43,3 +43,17 @@ type AppStateContextProps = {
 const AppStateContext = createContext<AppStateContextProps>(
   {} as AppStateContextProps
 );
+
+export const AppStateProvider: FC = ({ children }) => {
+  const { lists } = appData;
+
+  const getTasksByListId = (id: string) => {
+    return lists.find((list) => list.id === id)?.tasks || [];
+  };
+
+  return (
+    <AppStateContext.Provider value={{ lists, getTasksByListId }}>
+      {children}
+    </AppStateContext.Provider>
+  );
+};
